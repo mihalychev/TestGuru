@@ -1,10 +1,10 @@
 class User < ApplicationRecord
-  has_many :users_completed_tests
-  has_many :tests, through: :users_completed_tests
+  # has_and_belongs_to_many :tests
+  has_many :tests, inverse_of: 'author'
+  has_many :tests_users
+  has_many :tests, through: :tests_users
 
   def tests_by_level(level)
-    Test
-      .joins('JOIN user_completed_tests ON user_completed_tests.test_id = tests.id')
-      .where(user_completed_tests: { user_id: id }, level: level)
+    tests.where(level: level)
   end
 end
