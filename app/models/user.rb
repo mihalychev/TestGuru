@@ -3,7 +3,8 @@ class User < ApplicationRecord
   has_many :tests, through: :users_completed_tests
 
   def tests_by_level(level)
-    Test.joins('JOIN user_completed_tests ON user_completed_tests.test_id = tests.id')
-      .where("user_completed_tests.user_id = ? AND tests.level = ?", self.id, level)
+    Test
+      .joins('JOIN user_completed_tests ON user_completed_tests.test_id = tests.id')
+      .where(user_completed_tests: { user_id: id }, level: level)
   end
 end
