@@ -19,7 +19,7 @@ users = User.create!([
 
 tests = Test.create!([
   { title: 'Ruby', level: 1, category_id: categories[0].id, user_id: users[1].id },
-  { title: 'Rails', level: 1, category_id: categories[1].id, user_id: users[1].id },
+  { title: 'Rails', level: 2, category_id: categories[1].id, user_id: users[1].id },
   { title: 'JavaScript', level: 1, category_id: categories[2].id, user_id: users[1].id }
 ])
 
