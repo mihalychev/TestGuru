@@ -8,7 +8,7 @@ class Test < ApplicationRecord
 
   validates :level, numericality: { 
                       only_integer: true,
-                      :greater_than_or_equal_to => 0
+                      greater_than_or_equal_to: 0
                     }
   validates :title, presence: true,
                     uniqueness: {
@@ -24,6 +24,9 @@ class Test < ApplicationRecord
     joins(:category)
       .where(categories: { title: category_title })
       .order(id: :desc)
-      .pluck(:title)   
   }
+
+  def self.tests_by_category(category_title)
+    test_names(category_title).pluck(:title)
+  end
 end
