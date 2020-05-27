@@ -1,19 +1,31 @@
 class QuestionsController < ApplicationController
-  before_action :find_test, only: %i[index create]
-  before_action :find_question, only: %i[show destroy]
+  before_action :find_test, only: %i[index create new]
+  before_action :find_question, only: %i[show destroy edit update]
 
-  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
-
-  def index
-    render plain: @test.questions.pluck(:text)
-  end
+  # rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def new
+    @question = @test.questions.new
   end
 
   def create
-    @question = @test.questions.create!(question_params)
-    render plain: "Question was successfully created!"
+    @question = @test.questions.new(question_params)
+
+    if @question.save
+      redirect_to_test
+    else
+      render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @question.update(question_params)
+      redirect_to_test
+    else
+      render :edit
+    end
   end
 
   def show
@@ -22,17 +34,17 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    render plain: "Question has been deleted!"
+    redirect_to_test
   end
 
   private
 
   def find_question
-    @question = Question.find(params[:id].to_i)
+    @question = Question.find(params[:id])
   end
 
   def find_test
-    @test = Test.find(params[:test_id].to_i)
+    @test = Test.find(params[:id] ? params[:id] : params[:test_id])
   end
 
   def question_params
@@ -40,6 +52,10 @@ class QuestionsController < ApplicationController
   end
 
   def rescue_with_question_not_found
-    render plain: "Question not found!"
+    render plain: 'Error'
+  end
+
+  def redirect_to_test
+    redirect_to controller: 'tests', action: 'show', id: @question.test_id
   end
 end
