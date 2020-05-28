@@ -9,7 +9,7 @@
     <th>Question</th>
     <th colspan='2'>Actions</th>
   </tr>
-  <%= render 'questions' %>
+  <%= render @test.questions %>
 </table>
 
 <%= link_to 'Create question', new_test_question_path(@test.id) %>
