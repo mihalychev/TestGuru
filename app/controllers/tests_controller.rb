@@ -10,8 +10,7 @@ class TestsController < ApplicationController
   end
 
   def create
-    @test = Test.new(test_params)
-    @test.user_id = current_user.id
+    @test = current_user.created_tests.new(test_params)
 
     if @test.save
       redirect_to @test
