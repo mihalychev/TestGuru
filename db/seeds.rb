@@ -37,9 +37,3 @@ answers = Answer.create!([
   { text: 'Да', correct: true, question_id: questions[2].id },
   { text: 'Нет', correct: false, question_id: questions[2].id }
 ])
-
-tests_users = TestsUser.create!([
-  { user_id: users[0].id, test_id: tests[0].id },
-  { user_id: users[0].id, test_id: tests[1].id },
-  { user_id: users[0].id, test_id: tests[2].id }
-])
