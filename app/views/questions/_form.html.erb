@@ -1,7 +1,0 @@
-<%= form_with model: [@test, @question], local: true do |form| %>
-  <%= render 'shared/error', resource: @question %>
-
-  <%= form.label :text %>
-  <%= form.text_field :text, id: :question_text %>
-  <%= form.submit %>
-<% end %>

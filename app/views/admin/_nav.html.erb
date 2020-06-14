@@ -1,8 +1,8 @@
-<nav class='nav'>
-  <h1 class='nav__logo'><%= link_to 'TestGuru', root_path %></h1>
+<nav class='nav nav_admin'>
+  <h1 class='nav__logo nav__logo_admin'><%= link_to 'TestGuru', root_path %> Admin Panel</h1>
   <% if user_signed_in? %>
     <div class='nav__user'>
-      Welcome, <b><%= "#{current_user.first_name} #{current_user.last_name}" %></b>! 
+      Welcome, <b><%= "#{current_user.first_name} #{current_user.last_name}" %></b>! | 
       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
     </div>
   <% else %>
