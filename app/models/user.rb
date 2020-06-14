@@ -3,7 +3,12 @@ class User < ApplicationRecord
   has_many :test_passages
   has_many :tests, through: :test_passages, dependent: :destroy
 
-  validates :name, presence: true
+  has_secure_password
+
+  validates :email, 
+            presence: true,
+            uniqueness: true,
+            format: { with: /\A^([A-z0-9][._-]?)+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$\z/ }
 
   def tests_by_level(level)
     tests.where(level: level)
