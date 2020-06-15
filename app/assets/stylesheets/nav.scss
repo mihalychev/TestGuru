@@ -4,8 +4,26 @@
   align-items: center;
   padding: 0 20px;
 
+  &_admin {
+    height: 35px;
+    padding: 15px;
+    line-height: 35px;
+    color: #fff;
+    background-color: #4292e6;
+    margin-bottom: 40px;
+
+    a {
+      color: #fff;
+    }
+  }
+
   &__logo {
     display: inline;
+
+    &_admin {
+      font-size: 140%;
+      font-weight: bold;
+    }
   }
 
   &__user {
