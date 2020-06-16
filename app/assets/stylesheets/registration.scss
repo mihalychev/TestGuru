@@ -1,0 +1,11 @@
+.warning {
+  font-weight: bold;
+
+  &_match {
+    color: green;
+  }
+  
+  &_mismatch {
+    color: red;
+  }
+}
