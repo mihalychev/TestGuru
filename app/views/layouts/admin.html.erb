@@ -11,7 +11,9 @@
 
   <body>
     <%= render 'admin/nav' %>
-    <%= render 'shared/flash' %>
-    <%= yield %>
+    <main class='main'>
+      <%= render 'shared/flash' %>
+      <%= yield %>
+    </main>
   </body>
 </html>

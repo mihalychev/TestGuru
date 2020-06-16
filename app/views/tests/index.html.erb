@@ -1,13 +1,17 @@
 <h1>Tests</h1>
 
-<table>
+<table class='table'>
   <tr>
-    <th>Title</th>
+    <th class='sort-by-title pointer'>
+      Title
+      <%= octicon 'arrow-up', class: 'text-success hidden' %>
+      <%= octicon 'arrow-down', class: 'text-success hidden' %>  
+    </th>
     <th>Level</th>
     <th>Category</th>
     <th>Questions</th>
     <th>Actions</th>
-  <tr>
+  </tr>
   <%= render @tests %>
 </table>
 
