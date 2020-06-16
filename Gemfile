@@ -25,6 +25,10 @@ gem 'jbuilder', '~> 2.7'
 # Auth
 gem 'devise', '~> 4.0'
 
+# Networking
+gem 'faraday'
+gem "octokit", "~> 4.0"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -32,6 +36,7 @@ gem 'devise', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
+  gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

@@ -1,12 +1,7 @@
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-
+  
   &_admin {
-    height: 35px;
-    padding: 15px;
+    padding: 0 15px;
     line-height: 35px;
     color: #fff;
     background-color: #4292e6;
@@ -15,6 +10,15 @@
     a {
       color: #fff;
     }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
   &__logo {
