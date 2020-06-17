@@ -1,7 +1,7 @@
 <% if @test_passage.successful? %>
-  <h1 class='heading heading_success'>The <%= @test_passage.test.title %> Test was Successfuly Completed</h1>
+  <h2 class='heading heading_success'>The <%= @test_passage.test.title %> Test was Successfuly Completed</h2>
 <% else %>
-  <h1 class='heading heading_wrong'>The <%= @test_passage.test.title %> Test wasn't Completed</h1>
+  <h2 class='heading heading_wrong'>The <%= @test_passage.test.title %> Test wasn't Completed</h2>
 <% end %>
 <p>
   Correct: <%= @test_passage.correct_questions %> from <%= @test_passage.test.questions.count %> | <%= @test_passage.complete_percentage %>%

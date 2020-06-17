@@ -12,5 +12,6 @@
   <%= render @test.questions %>
 </table>
 
+<%= link_to 'Edit test', edit_admin_test_path(@test) %>
 <%= link_to 'Create question', new_admin_test_question_path(@test.id) %>
 <%= link_to 'Back', admin_tests_path %>
