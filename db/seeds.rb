@@ -12,11 +12,6 @@ categories = Category.create!([
   { title: 'Frontend' }
 ])
 
-users = User.create!([
-  { email: 'Maxim' },
-  { email: 'Admin' }
-])
-
 tests = Test.create!([
   { title: 'Ruby', level: 1, category_id: categories[0].id, user_id: users[1].id },
   { title: 'Rails', level: 2, category_id: categories[1].id, user_id: users[1].id },

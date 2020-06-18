@@ -1,1 +1,6 @@
 <%= link_to 'Tests', tests_path %>
+<% if current_user.present? && current_user.admin? %>
+  <%= link_to 'Badges', admin_badges_path %>
+<% elsif current_user.present? && !current_user.admin? %>
+  <%= link_to 'Badges', badges_path %>
+<% end %>

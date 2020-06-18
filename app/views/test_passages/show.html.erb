@@ -5,11 +5,9 @@
   <% end %>
 </div>
 
-<p>
-  <b>
-    <%= @test_passage.question_number %>/<%= @test_passage.test.questions.count %> <%= @test_passage.current_question.text %>
-  </b>
-</p>
+<b>
+  <%= @test_passage.question_number %>/<%= @test_passage.test.questions.count %> <%= @test_passage.current_question.text %>
+</b>
 
 <%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
   <ol>

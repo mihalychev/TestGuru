@@ -29,7 +29,7 @@ const formInlineHandler = testId => {
     formInline.classList.remove('hidden')
     link.textContent = 'Cancel'
   } 
-  if (formInline && !formInline.classList.contains('hidden')) {
+  else if (formInline && !formInline.classList.contains('hidden')) {
     testTitle.classList.remove('hidden')
     formInline.classList.add('hidden')
     link.textContent = 'Edit'
