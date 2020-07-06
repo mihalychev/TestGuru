@@ -13,7 +13,12 @@
 
   <p>
     <%= form.label :rule %>:
-    <%= form.select :rule, Badge::BADGES_RULES %>
+    <%= form.select :rule, BadgeService::BADGES_RULES %>
+  </p>
+
+  <p>
+    <%= form.label :value %><br>
+    <%= form.text_field :value, id: :badge_value %>
   </p>
 
   <%= form.submit %>
