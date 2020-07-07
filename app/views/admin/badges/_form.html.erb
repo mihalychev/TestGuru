@@ -12,8 +12,8 @@
   </p>
 
   <p>
-    <%= form.label :rule %>:
-    <%= form.select :rule, BadgeService::BADGES_RULES %>
+    <%= form.label :rule %>
+    <%= form.select :rule, I18n.t('badge_rules').invert %>
   </p>
 
   <p>

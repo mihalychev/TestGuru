@@ -11,7 +11,7 @@ class TestPassagesController < ApplicationController
 
     if @test_passage.completed?
       user_badges = BadgeService.new(@test_passage).call
-      current_user.badges = user_badges
+      current_user.badges << user_badges
       redirect_to result_test_passage_path(@test_passage)
     else
       render :show
