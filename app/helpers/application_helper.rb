@@ -12,4 +12,8 @@ module ApplicationHelper
       content_tag :div, message.html_safe, class: "flash flash_#{key}"
     end.join.html_safe
   end
+
+  def badge_rule_collection
+    I18n.t('badge_rules').invert
+  end
 end

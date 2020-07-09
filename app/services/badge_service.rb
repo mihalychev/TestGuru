@@ -1,4 +1,6 @@
 class BadgeService
+  BADGE_RULES = [:complete_category, :first_try, :complete_level]
+
   def initialize(test_passage)
     @test_passage = test_passage
     @user = test_passage.user
@@ -11,25 +13,39 @@ class BadgeService
 
   private
 
-  def first_try?
-    return if !@test_passage.successful? || @user.badges.include?(badge)
-    tests = completed_tests.select { |test| test.title == @test.title }
+  def first_try?(badge)
+    return if !@test_passage.successful?
+    tests = completed_test_passages.where(tests: { title: @test.title })
     tests.count == 1
   end
 
   def complete_level?(badge)
-    return if !@test_passage.successful? && @test.level != level || @user.badges.include?(badge)
-    tests = completed_tests.select { |test| test.level == @test.level }
-    tests.uniq.count == Test.where(level: badge.value).count
+    return if !@test_passage.successful? && @test.level != badge.value
+    completion_check('level', badge)
   end
 
   def complete_category?(badge)
-    return if !@test_passage.successful? && @test.category_id != category_id || @user.badges.include?(badge)
-    tests = completed_tests.select { |test| test.category_id == @test.category_id }
-    tests.uniq.count == Test.where(category_id: badge.value).count
+    return if !@test_passage.successful? && @test.category_id != badge.value
+    completion_check('category_id', badge)
   end
 
-  def completed_tests
-    @user.test_passages.map { |test_passage| test_passage.test if test_passage.successful? }
+  def completed_test_passages
+    @user.test_passages.joins(:test).where(passed: true)
+  end
+
+  def award_date(badge)
+    @user.user_badges.where(badge: Badge.where(rule: badge.rule, value: badge.value))
+                     .order(created_at: :desc).first&.created_at
+  end
+
+  def completion_check(par, badge)
+    if @user.badges.include?(badge)
+      tests = completed_test_passages.where(tests: { "#{par}" => badge.value })
+                                     .where("test_passages.created_at > ?", award_date(badge))
+    else
+      tests = completed_test_passages.where(tests: { "#{par}" => badge.value })
+    end
+
+    tests.uniq.count == Test.where("#{par}" => badge.value).count
   end
 end
