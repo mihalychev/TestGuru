@@ -14,6 +14,6 @@ module ApplicationHelper
   end
 
   def badge_rule_collection
-    I18n.t('badge_rules').invert
+    BadgeService::BADGE_RULES.map { |rule| [t("badge_rules.#{rule}"), rule] }
   end
 end

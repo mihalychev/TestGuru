@@ -16,6 +16,7 @@ class BadgeService
   def first_try?(badge)
     return if !@test_passage.successful?
     tests = completed_test_passages.where(tests: { title: @test.title })
+                                   .map { |test_passage| test_passage.test }
     tests.count == 1
   end
 
@@ -34,7 +35,7 @@ class BadgeService
   end
 
   def award_date(badge)
-    @user.user_badges.where(badge: Badge.where(rule: badge.rule, value: badge.value))
+    @user.user_badges.where(badge: badge)
                      .order(created_at: :desc).first&.created_at
   end
 
@@ -42,8 +43,10 @@ class BadgeService
     if @user.badges.include?(badge)
       tests = completed_test_passages.where(tests: { "#{par}" => badge.value })
                                      .where("test_passages.created_at > ?", award_date(badge))
+                                     .map { |test_passage| test_passage.test }
     else
       tests = completed_test_passages.where(tests: { "#{par}" => badge.value })
+                                     .map { |test_passage| test_passage.test }
     end
 
     tests.uniq.count == Test.where("#{par}" => badge.value).count
