@@ -28,5 +28,8 @@ Rails.application.routes.draw do
       end
     end
     resources :gists, only: :index
+    resources :badges, except: [:show]
   end
+
+  resources :badges, only: :index
 end

@@ -1,0 +1,14 @@
+<h2>Badges</h2>
+<div class='badges'>
+  <section class='badges__all'>
+    <h3>All Badges</h3>
+    <%= render @badges %>
+  </section>
+  <section class='badges__user-completed'>
+    <h3>User Badges</h3>
+    <%= render partial: 'user_badge', collection: @user_badges %>
+  </section>
+</div>
+
+<%= link_to 'New Badge', new_admin_badge_path %>
+<%= link_to 'Back', root_path %>

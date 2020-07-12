@@ -1,0 +1,6 @@
+<div class='badge'>
+  <img src='<%= badge.image_url %>' class='badge__img'>
+  <p class='badge__title'><%= badge.title %></p>
+  <%= link_to 'Edit', edit_admin_badge_path(badge) %>
+  <%= link_to 'Delete', admin_badge_path(badge), method: :delete %>
+</div>
