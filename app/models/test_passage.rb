@@ -31,6 +31,18 @@ class TestPassage < ApplicationRecord
     percentage >= 0.85
   end
 
+  def timer
+    test.timer
+  end
+  
+  def timer?
+    test.timer.present?
+  end
+
+  def time_left
+    created_at + test.timer - Time.now
+  end
+
   private
 
   def before_validation_set_current_question

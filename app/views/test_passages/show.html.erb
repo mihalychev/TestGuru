@@ -1,5 +1,10 @@
 <h2>Passing the <%= @test_passage.test.title %> Test</h2>
 
+<% if @test_passage.timer? %>
+  <%= content_tag :div, class: 'timer', data: { timer: @test_passage.timer } do %>
+  <% end %>
+<% end %>
+
 <div class='progress'>
   <%= content_tag :div, class: 'progress__bar', data: { percentage: @test_passage.complete_percentage } do %>
   <% end %>
