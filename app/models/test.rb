@@ -15,6 +15,10 @@ class Test < ApplicationRecord
                       scope: :level,
                       message: 'test with this name and level is already exist!'
                     }
+  validates :timer, numericality: {
+                      only_integer: true,
+                      greater_than: 0
+                    }
 
   scope :easy,   -> { where(level: 0..1) }
   scope :middle, -> { where(level: 2..4) }

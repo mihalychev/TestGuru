@@ -1,5 +1,10 @@
 <h2>Passing the <%= @test_passage.test.title %> Test</h2>
 
+<% if @test_passage.timer? %>
+  <%= content_tag :div, class: 'timer', data: { timer: @test_passage.timer } do %>
+  <% end %>
+<% end %>
+
 <div class='progress'>
   <%= content_tag :div, class: 'progress__bar', data: { percentage: @test_passage.complete_percentage } do %>
   <% end %>
@@ -9,7 +14,7 @@
   <%= @test_passage.question_number %>/<%= @test_passage.test.questions.count %> <%= @test_passage.current_question.text %>
 </b>
 
-<%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
+<%= form_with url: test_passage_path(@test_passage), local: true, method: :put, class: 'question-form' do |form| %>
   <ol>
     <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :text, include_hidden: false do |b| %>
       <li>
