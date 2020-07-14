@@ -1,9 +1,14 @@
 document.addEventListener('turbolinks:load', () => {
   const timerBlock = document.querySelector('.timer')
-  if (timerBlock) timer(timerBlock)
+  const form = document.querySelector('.question-form')
+  if (timerBlock) timer(timerBlock, form)
 })
 
-const timer = timerBlock => {
+document.addEventListener('turbolinks:before-visit', () => {
+  sessionStorage.clear()
+})
+
+const timer = (timerBlock, form) => {
   if (sessionStorage.getItem('timeLeft') == null) {
     sessionStorage.setItem('timeLeft', timerBlock.dataset.timer)
   }
@@ -16,7 +21,7 @@ const timer = timerBlock => {
     if (timeLeft <= 0) {
       clearInterval(updateTimer)
       sessionStorage.clear()
-      window.location.replace(window.location.href + '/result')
+      form.submit()
     } else {
       timerBlock.textContent = timeLeft
       sessionStorage.setItem('timeLeft', timeLeft)
